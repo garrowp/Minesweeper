@@ -1,24 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Block from './components/Block'
 
 function App() {
+
+  const blocks = [];
+  for (let i = 0; i < 500 / 20; i++) {
+    blocks[i] = [];
+    for (let j = 0; j < 500 / 20; j++) {
+      blocks[i].push(<Block key={j} />);
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Minesweeper</h1>
+      <div
+        style={{
+          width: `500px`,
+          height: `500px`,
+          border: `1px solid black`,
+          margin: `0 auto`
+        }}
+      >
+        {blocks.map((row, index) => (
+          <div key={index} style={{ width: `100%`, lineHeight: 0}}>
+            {row}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
